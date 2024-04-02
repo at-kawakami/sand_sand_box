@@ -1,0 +1,17 @@
+steps:
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  args:
+  - gcloud
+  - functions
+  - deploy
+  - $_FUNC_NAME
+  - --gen2
+  - --entry-point=$_ENTRY_POINT
+  - --ingress-settings=internal-only
+  - --memory=$_MEMORY
+  - --project=$_PROJECT
+  - --region=asia-northeast1
+  - --runtime=python311
+  - --source=CloudFunctions/cf-gcs-trigger/.
+  - --timeout=$_TIMEOUT
+  - --trigger-bucket=$_TRIGGER_BUCKET
