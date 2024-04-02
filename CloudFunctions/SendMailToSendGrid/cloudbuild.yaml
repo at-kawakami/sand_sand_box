@@ -1,0 +1,19 @@
+steps:
+- id: deploy function
+  name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  args:
+  - gcloud
+  - functions
+  - deploy
+  - $_FUNC_NAME
+  - --gen2
+  - --egress-settings=all
+  - --entry-point=$_ENTRY_POINT
+  - --max-instances=$_MAX_INSTANCES
+  - --memory=$_MEMORY
+  - --project=$_PROJECT
+  - --region=asia-northeast1
+  - --runtime=python311
+  - --source=CloudFunctions/SendMailToSendGrid/.
+  - --timeout=$_TIMEOUT
+  - --trigger-http
