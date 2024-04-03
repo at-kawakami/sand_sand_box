@@ -14,6 +14,6 @@ steps:
   - --project=$_PROJECT
   - --region=asia-northeast1
   - --runtime=python311
-  - --source=CloudFunctions/list_dataset_binding/.
+  - --source=CloudFunctions/ListBQDatasetBinding/.
   - --timeout=$_TIMEOUT
   - --trigger-http
