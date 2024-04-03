@@ -1,0 +1,7 @@
+functions-framework==3.*
+google-api-core
+google-cloud-functions
+google-cloud-logging
+google_auth
+requests
+pytest
