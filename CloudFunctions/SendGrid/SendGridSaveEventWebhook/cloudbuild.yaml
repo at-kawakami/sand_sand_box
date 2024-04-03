@@ -1,0 +1,26 @@
+steps:
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  args:
+  - gcloud
+  - beta
+  - functions
+  - deploy
+  - $_FUNC_NAME
+  - --gen2
+  - --allow-unauthenticated
+  - --concurrency=3
+  - --cpu=1
+  - --entry-point=$_ENTRY_POINT
+  - --env-vars-file=$_ENV_VARS_FILE
+  - --ingress-settings=internal-and-gclb
+  - --max-instances=$_MAX_INSTANCES
+  - --memory=$_MEMORY
+  - --project=$_PROJECT
+  - --region=asia-northeast1
+  - --runtime=python311
+  - --service-account=$_SERVICE_ACCOUNT
+  - --set-secrets=SENDGRID_VERIFICATION_KEY=$_SENDGRID_VERIFICATION_KEY
+  - --source=.
+  - --timeout=$_TIMEOUT
+  - --trigger-http
+  - --update-labels=service=sendgrid

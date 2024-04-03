@@ -1,0 +1,20 @@
+steps:
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  args:
+  - gcloud
+  - functions
+  - deploy
+  - $_FUNC_NAME
+  - --gen2
+  - --entry-point=$_ENTRY_POINT
+  - --env-vars-file=$_ENV_VARS_FILE
+  - --ingress-settings=all
+  - --max-instances=$_MAX_INSTANCES
+  - --memory=$_MEMORY
+  - --project=$_PROJECT
+  - --region=asia-northeast1
+  - --runtime=python311
+  - --service-account=$_SERVICE_ACCOUNT
+  - --source=.
+  - --timeout=$_TIMEOUT
+  - --trigger-http
