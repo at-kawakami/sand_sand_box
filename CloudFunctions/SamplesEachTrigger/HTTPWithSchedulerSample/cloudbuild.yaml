@@ -14,7 +14,7 @@ steps:
   - --project=$_PROJECT
   - --region=asia-northeast1
   - --runtime=python311
-  - --source=CloudFunctions/HTTPWithScheduler/.
+  - --source=CloudFunctions/HTTPWithSchedulerSample/.
   - --timeout=$_TIMEOUT
   - --trigger-http
 
