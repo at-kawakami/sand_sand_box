@@ -17,9 +17,13 @@ resource "aws_lb_listener" "hello_func" {
 # __generated__ by Terraform
 resource "aws_lb_listener_rule" "hello_func" {
   listener_arn = aws_lb_listener.hello_func.id
-  priority     = 99999
-  tags         = {}
-  tags_all     = {}
+  priority     = 1
+  tags         = {
+    "Name" = "helloFunc"
+  }
+  tags_all     = {
+    "Name" = "helloFunc"
+  }
   condition {}
   action {
     order            = 1
