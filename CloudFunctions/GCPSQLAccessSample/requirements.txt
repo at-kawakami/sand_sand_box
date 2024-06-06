@@ -1,0 +1,4 @@
+pandas
+PyMySQL
+sqlalchemy
+google-cloud-logging
