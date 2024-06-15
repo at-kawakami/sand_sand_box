@@ -1,6 +1,6 @@
 resource "aws_nat_gateway" "main" {
     
-  allocation_id     = "eipalloc-0aa39755adcf90941"
+  allocation_id     = "${var.eip_allocate_id}"
   connectivity_type = "public"
   subnet_id         = "${var.public_subnet1}"
   tags = {

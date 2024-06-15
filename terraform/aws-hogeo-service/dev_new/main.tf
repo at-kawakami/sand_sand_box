@@ -64,6 +64,7 @@ module "aws_route_table" {
 
 module "aws_nat_gateway" {
   source = "../../modules/aws_nat_gateway"
+  eip_allocate_id = module.aws_eip.eip_allocate_id
   name = var.service_name
   public_subnet1 = module.aws_subnet.public_subnet1
 }
