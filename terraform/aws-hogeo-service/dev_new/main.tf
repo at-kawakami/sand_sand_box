@@ -57,7 +57,7 @@ module "aws_internet_gateway" {
 module "aws_route_table" {
   source = "../../modules/aws_route_table"
   name = var.service_name
-  nat_id = module.na
+  nat_id = module.aws_nat_gateway.nat_id
   gateway_id = module.aws_internet_gateway_id
   vpc_id = module.aws_vpc_id
 }
