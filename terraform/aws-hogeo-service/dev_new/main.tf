@@ -35,6 +35,13 @@ provider "aws" {
   region = "ap-northeast-1"
 }
 
+module "aws_eip" {
+  source = "../../modules/aws_eip"
+  aws_network_interface_id = module.aws_network_interface.aws_network_interface_id
+  name = var.service_name
+
+}
+
 module "aws_vpc" {
   source = "../../modules/aws_vpc"
   name = var.service_name
@@ -58,8 +65,8 @@ module "aws_route_table" {
   source = "../../modules/aws_route_table"
   name = var.service_name
   nat_id = module.aws_nat_gateway.nat_id
-  gateway_id = module.aws_internet_gateway_id
-  vpc_id = module.aws_vpc_id
+  gateway_id = module.aws_internet_gateway.igw_id
+  vpc_id = module.aws_vpc.vpc_id
 }
 
 module "aws_nat_gateway" {

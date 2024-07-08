@@ -1,0 +1,54 @@
+resource "aws_db_instance" "main" {
+  allocated_storage                     = 20
+  allow_major_version_upgrade           = false
+  apply_immediately                     = null
+  auto_minor_version_upgrade            = true
+  availability_zone                     = "ap-northeast-1c"
+  backup_retention_period               = 1
+  backup_window                         = "16:59-17:29"
+  ca_cert_identifier                    = "rds-ca-rsa2048-g1"
+  copy_tags_to_snapshot                 = true
+  customer_owned_ip_enabled             = false
+  # Todo initial db name
+  db_name                               = "ExampleDB"
+  db_subnet_group_name                  = "default"
+  delete_automated_backups              = true
+  deletion_protection                   = false
+  enabled_cloudwatch_logs_exports       = []
+  engine                                = "mysql"
+  engine_version                        = "8.0.35"
+  final_snapshot_identifier             = null
+  iam_database_authentication_enabled   = false
+  identifier                            = var.name
+  identifier_prefix                     = null
+  instance_class                        = "db.t3.micro"
+  iops                                  = 0
+  #Todo
+  kms_key_id                            = "arn:aws:kms:ap-northeast-1:571429965935:key/d990ccb3-c647-49dc-a7aa-33b774d19bbd"
+  license_model                         = "general-public-license"
+  maintenance_window                    = "tue:19:36-tue:20:06"
+  manage_master_user_password           = true
+  #master_user_secret_kms_key_id         = var.kms_key_id
+  max_allocated_storage                 = 1000
+  monitoring_interval                   = 0
+  monitoring_role_arn                   = null
+  multi_az                              = false
+  nchar_character_set_name              = null
+  network_type                          = "IPV4"
+  option_group_name                     = "default:mysql-8-0"
+  parameter_group_name                  = "default.mysql8.0"
+  #password                              = null # sensitive
+  performance_insights_enabled          = false
+  performance_insights_kms_key_id       = null
+  performance_insights_retention_period = 0
+  port                                  = 3306
+  publicly_accessible                   = false
+  skip_final_snapshot                   = true
+  storage_encrypted                     = true
+  storage_throughput                    = 0
+  storage_type                          = "gp2"
+  tags                                  = {}
+  tags_all                              = {}
+  username                              = "admin"
+  vpc_security_group_ids                = ["sg-0801d89ffc6361a08", "sg-0dd3429992d4e8b07", "sg-dabe8fa3"]
+}
