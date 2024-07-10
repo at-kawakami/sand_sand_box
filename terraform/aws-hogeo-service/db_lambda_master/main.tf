@@ -28,6 +28,7 @@ variable "service_name" {
 
 locals {
   rds_proxy_role_name = "rds_proxy_role_hogeo"
+  public_subnets = ["subnet-0dcc5856", "subnet-e9f2c3c1"]
 }
 
 module "aws_iam_policy" {
@@ -41,6 +42,11 @@ module "aws_iam_role" {
   aws_iam_policy = module.aws_iam_policy.rdsproxy_role
 }
 
+module "aws_iam_role_lambda_vpc_sqs_role" {
+  source = "../../modules/aws_iam_role/lambda_vpc_sqs_role"
+  name = "${var.service_name}_lambda_vpc_sqs_role"
+}
+
 module "aws_db_instance" {
   source = "../../modules/aws_db_instance"
   name = var.service_name
@@ -51,6 +57,8 @@ module "aws_db_proxy" {
   source = "../../modules/aws_db_proxy"
   name = "hogeo-db-proxy"
   role_arn = module.aws_iam_role.rds_proxy_role_arn
+  public_subnets = local.public_subnets
   #Todo
-  secret_arn = "arn:aws:secretsmanager:ap-northeast-1:571429965935:secret:rds-db-credentials/hogeodb/admin/1720075954820-6hhLSv"
+  #secret_arn = module.aws_db_instance.aws_db_instance_secret
+  master_user_secret = module.aws_db_instance.master_user_secret
 }

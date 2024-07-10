@@ -8,13 +8,14 @@ resource "aws_db_proxy" "main" {
   tags                   = {}
   tags_all               = {}
   vpc_security_group_ids = ["sg-0e383393b5e37d880"]
-  vpc_subnet_ids         = ["subnet-0dcc5856", "subnet-e9f2c3c1", "subnet-fcfaa2b5"]
+  # vpc_subnet_ids: at least 2 subnets
+  vpc_subnet_ids         = [for i in var.public_subnets : i]
   auth {
     auth_scheme               = "SECRETS"
     client_password_auth_type = "MYSQL_NATIVE_PASSWORD"
     description               = null
     iam_auth                  = "DISABLED"
-    secret_arn                = var.secret_arn
+    secret_arn                = var.master_user_secret[0].secret_arn
     username                  = null
   }
 }
