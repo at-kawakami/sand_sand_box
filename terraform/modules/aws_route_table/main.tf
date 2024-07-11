@@ -3,7 +3,7 @@ resource "aws_route_table" "main" {
   route            = []
   tags             = {}
   tags_all         = {}
-  vpc_id           = "${var.vpc_id}"
+  vpc_id           = var.vpc_id
 }
 
 resource "aws_route_table" "rtb-public" {
