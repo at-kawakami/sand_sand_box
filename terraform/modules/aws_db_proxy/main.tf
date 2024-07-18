@@ -8,6 +8,7 @@ resource "aws_db_proxy" "main" {
   tags                   = {}
   tags_all               = {}
   vpc_security_group_ids = ["sg-0e383393b5e37d880"]
+  #vpc_security_group_ids = [var.security_group]
   # vpc_subnet_ids: at least 2 subnets
   vpc_subnet_ids         = [for i in var.public_subnets : i]
   auth {

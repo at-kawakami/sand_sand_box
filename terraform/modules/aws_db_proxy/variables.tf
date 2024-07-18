@@ -15,3 +15,6 @@ variable "master_user_secret" {
 variable "public_subnets" {
     type = list(string)
 }
+variable "security_group" {
+  
+}
