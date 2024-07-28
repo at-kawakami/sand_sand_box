@@ -48,3 +48,25 @@ module "aws_subnet" {
   # Todo
   #zone = var.zone
 }
+
+module "aws_nat_gateway" {
+  source = "../modules/aws_nat_gateway"
+  name = var.service_name
+  eip_allocate_id = "eipalloc-0c5e2ab3d59541f88"
+  public_subnet1 = module.aws_subnet.public_subnet_1a
+}
+
+module "aws_internet_gateway" {
+  source = "../modules/aws_internet_gateway"
+  name = var.service_name
+  vpc_id = module.aws_vpc.vpc_id
+}
+
+module "aws_route_table" {
+  source = "../modules/aws_route_table"
+  name = var.service_name
+  vpc_id = module.aws_vpc.vpc_id
+  nat_id = module.aws_nat_gateway.aws_nat_gateway_id
+  gateway_id = module.aws_internet_gateway.igw_id
+}
+
