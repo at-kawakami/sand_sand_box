@@ -1,0 +1,1 @@
+AWS RDS Proxyを使って、LambdaからDBアクセスをするサービスを構築する
